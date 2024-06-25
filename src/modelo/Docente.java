@@ -20,7 +20,6 @@ public class Docente extends PersonaH {
     private String escalaSalarial;
 
     //2. CONSTRUCTORES
-    
     //1
     public Docente() {
     }
@@ -83,22 +82,22 @@ public class Docente extends PersonaH {
     public void setEscalaSalarial(String escalaSalarial) {
         this.escalaSalarial = escalaSalarial;
     }
-    
-    public void imprimir(){
-        System.out.println("------ DATOS PERSONALES ------\n" +
-                "Cedula: " + getCedula() + "\n" +
-                "Nombres: " + getNombres()+ "\n" +
-                "Apellidos: " + getApellidos()+ "\n" +
-                "Teléfono: " + getTelefono()+ "\n" +
-                "Dirección: " + getDireccion()+ "\n" +
-                "Sexo: " + getSexo() + "\n" +
-                "Fecha de nacimiento: " + getFechaNacimiento()+ "\n" +
-                "------ DATOS DOCENTE ------\n" +
-                "Id Docente: " + getIdDocente() + "\n" +
-                "Especialidad: " + getEspecialidad() + "\n" +
-                "Titulo de docente: " + getTitulo() + "\n" +
-                "Registro Senecyt: " + getRegistroSenecyt() + "\n" +
-                "Escala Salarial: " + getEscalaSalarial() + "\n");
+
+    public void imprimir() {
+        System.out.println("------ DATOS PERSONALES ------\n"
+                + "Cedula: " + getCedula() + "\n"
+                + "Nombres: " + getNombres() + "\n"
+                + "Apellidos: " + getApellidos() + "\n"
+                + "Teléfono: " + getTelefono() + "\n"
+                + "Dirección: " + getDireccion() + "\n"
+                + "Sexo: " + getSexo() + "\n"
+                + "Fecha de nacimiento: " + getFechaNacimiento() + "\n"
+                + "------ DATOS DOCENTE ------\n"
+                + "Id Docente: " + getIdDocente() + "\n"
+                + "Especialidad: " + getEspecialidad() + "\n"
+                + "Titulo de docente: " + getTitulo() + "\n"
+                + "Registro Senecyt: " + getRegistroSenecyt() + "\n"
+                + "Escala Salarial: " + getEscalaSalarial());
     }
 
 }

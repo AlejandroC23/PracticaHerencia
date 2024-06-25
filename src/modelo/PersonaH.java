@@ -110,11 +110,11 @@ public class PersonaH {
         System.out.println("------ DATOS PERSONALES ------\n"+
                 "Id: " + getIdPersona()+ "\n" +
                 "Cedula: " + getCedula() + "\n" +
-                "Nombres: " + getNombres()+ "\n" +
-                "Apellidos: " + getApellidos()+ "\n" +
-                "Teléfono: " + getTelefono()+ "\n" +
-                "Dirección: " + getDireccion()+ "\n" +
+                "Nombres: " + getNombres() + "\n" +
+                "Apellidos: " + getApellidos() + "\n" +
+                "Teléfono: " + getTelefono() + "\n" +
+                "Dirección: " + getDireccion() + "\n" +
                 "Sexo: " + getSexo() + "\n" +
-                "Fecha de nacimiento: " + getFechaNacimiento()+ "\n");
+                "Fecha de nacimiento: " + getFechaNacimiento() + "\n");
     }
 }
