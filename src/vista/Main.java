@@ -5,6 +5,7 @@
 package vista;
 
 import modelo.Administrativo;
+import modelo.CuentaAhorros;
 import modelo.Docente;
 import modelo.Estudiante;
 import modelo.PersonaH;
@@ -67,5 +68,21 @@ public class Main {
         e.setJornada("Matutina");
         
         //e.imprimir();
+        
+        //INTANCIAR OBJETO DE CUENTA DE AHORROS
+        CuentaAhorros ca = new CuentaAhorros();
+        ca.setSaldo(10000000.50);
+        ca.determinarCuenta();
+        ca.setComisionMensual(0);
+        ca.setTasaAnual(12);
+        ca.retiro(1000);
+        ca.retiro(1000);
+        ca.retiro(1000);
+        ca.retiro(1000);
+        ca.retiro(1000);
+        ca.retiro(1000);
+        ca.extractoMensual();
+        ca.retiro(1000);
+        ca.extractoMensual();
     }
 }

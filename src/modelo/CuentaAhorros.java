@@ -14,8 +14,8 @@ public class CuentaAhorros extends Cuenta {
     public CuentaAhorros() {
     }
 
-    public CuentaAhorros(boolean cuentaActiva, int nroConsignaciones, int nroRetiros, double saldo, float tasaAnual, float comisionMensual) {
-        super(nroConsignaciones, nroRetiros, saldo, tasaAnual, comisionMensual);
+    public CuentaAhorros(boolean cuentaActiva, int nroConsignaciones, int nroRetiros, double saldo, float tasaAnual, float comisionMensual, double interesMensual) {
+        super(nroConsignaciones, nroRetiros, saldo, tasaAnual, comisionMensual, interesMensual);
         this.cuentaActiva = cuentaActiva;
     }
 
@@ -48,17 +48,32 @@ public class CuentaAhorros extends Cuenta {
     public void retiro(double valorRetiro){
         if(isCuentaActiva() == true){
             super.retiro(valorRetiro);
+            if(getNroRetiros() > 4){
+                setComisionMensual(getComisionMensual() + 1000);
+            }
         }else{
             System.out.println("La cuenta esta inactiva.");
         }
+        determinarCuenta();
     }
     
     @Override
     public void extractoMensual(){
-        if(getNroRetiros() > 4){
-            setComisionMensual(getComisionMensual() + 1000);
-        }
         super.extractoMensual();
         determinarCuenta();
+        System.out.println("------ EXTRACTO MENSUAL -----" + "\n" +
+                "Cuenta activa: " + isCuentaActiva() + "\n" +
+                "Saldo: " + getSaldo() + "\n" +
+                "Interés Mensual: " + getInteresMensual() + "\n" +
+                "Comisión Mensual: " + getComisionMensual());
+    }
+    
+    @Override
+    public void imprimir(){
+        System.out.println("------ CUENTA DE AHORROS ------" + "\n" +
+                "Cuenta activa: " + isCuentaActiva() + "\n" +
+                "Saldo de la Cuenta: " + getSaldo() + "\n" +
+                "Comision Anual: " + getComisionMensual()+ "\n" +
+                "Nro Transacciones: " + (getNroConsignaciones()+getNroRetiros()));
     }
 }

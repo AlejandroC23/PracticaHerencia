@@ -14,16 +14,26 @@ public class Cuenta {
     private double saldo;
     private float tasaAnual;
     private float comisionMensual;
+    private double interesMensual;
 
     public Cuenta() {
     }
 
-    public Cuenta(int nroConsignaciones, int nroRetiros, double saldo, float tasaAnual, float comisionMensual) {
+    public Cuenta(int nroConsignaciones, int nroRetiros, double saldo, float tasaAnual, float comisionMensual, double interesMensual) {
         this.nroConsignaciones = nroConsignaciones;
         this.nroRetiros = nroRetiros;
         this.saldo = saldo;
         this.tasaAnual = tasaAnual;
         this.comisionMensual = comisionMensual;
+        this.interesMensual = interesMensual;
+    }
+
+    public double getInteresMensual() {
+        return interesMensual;
+    }
+
+    public void setInteresMensual(double interesMensual) {
+        this.interesMensual = interesMensual;
     }
 
     public double getSaldo() {
@@ -91,8 +101,8 @@ public class Cuenta {
     }
     
     public void interesMensual(){
-        double interesMensual = (getSaldo() * getTasaAnual()) / 12;
-        setSaldo(getSaldo() + interesMensual);
+        setInteresMensual((getSaldo() * getTasaAnual()) / 365);
+        setSaldo(getSaldo() + getComisionMensual());
     }
     
     public void extractoMensual(){
