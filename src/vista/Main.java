@@ -4,8 +4,12 @@
  */
 package vista;
 
+import com.sun.source.tree.CaseTree;
+import java.util.ArrayList;
+import java.util.Scanner;
 import modelo.Administrativo;
 import modelo.CuentaAhorros;
+import modelo.CuentaCorriente;
 import modelo.Docente;
 import modelo.Estudiante;
 import modelo.PersonaH;
@@ -15,7 +19,6 @@ import modelo.PersonaH;
  * @author Alejandro
  */
 public class Main {
-
     public static void main(String[] args) {
         Docente d = new Docente();
         
@@ -69,20 +72,118 @@ public class Main {
         
         //e.imprimir();
         
-        //INTANCIAR OBJETO DE CUENTA DE AHORROS
-        CuentaAhorros ca = new CuentaAhorros();
-        ca.setSaldo(10000000.50);
-        ca.determinarCuenta();
-        ca.setComisionMensual(0);
-        ca.setTasaAnual(12);
-        ca.retiro(1000);
-        ca.retiro(1000);
-        ca.retiro(1000);
-        ca.retiro(1000);
-        ca.retiro(1000);
-        ca.retiro(1000);
-        ca.extractoMensual();
-        ca.retiro(1000);
-        ca.extractoMensual();
+        //INTANCIAR OBJETO DE CUENTA DE AHORROS Y CORRIENTE
+//        double saldo = 18000;
+//        double tasa = 12.00;
+//        CuentaAhorros a1 = new CuentaAhorros(false, 
+//                0, 
+//                0, 
+//                saldo, 
+//                tasa, 
+//                0);
+//        for (int i = 0; i < 6; i++) {
+//            a1.retirar(5000);
+//        }
+//        a1.extractoMensual();
+//        a1.imprimir();
+        
+//        double saldo2 = 12000;
+//        double tasa2 = 12.00;
+//        CuentaCorriente a2 = new CuentaCorriente(0, 
+//                0, 
+//                0, 
+//                saldo2, 
+//                tasa2, 
+//                0);
+//        
+//        a2.imprimir();
+//        
+//        for (int i = 0; i < 4; i++) {
+//            System.out.println("RETIRANDO...");
+//            a2.retiroCorriente(5000);
+//        }
+//        
+//        a2.extractoMensual();
+//        a2.imprimir();
+//        
+//        System.out.println("DEPOSITANDO...");
+//        a2.depositar(10000);
+//        
+//        a2.imprimir();
+
+        //EJERCICIO POLIMORFISMO - 01/07/24
+        ArrayList<CuentaAhorros> listCA = new ArrayList<>();
+        ArrayList<CuentaCorriente> listCC = new ArrayList<>();
+        
+        Scanner s = new Scanner(System.in);
+        int opcMain;
+        
+        do{
+            System.out.println("       --------- BANCO JUANITO PEREZ ---------");
+            System.out.println("                      Desde 1998");
+        
+            System.out.print("""
+                         ¿Qué desea realizar?
+                         1. Crear Cuenta
+                         2. Consultar Saldo
+                         3. Imprimir Estado de Cuenta
+                         4. Depósito
+                         5. Retiros
+                         6. Salir
+                         """);
+            System.out.print("Opción: ");
+            opcMain = s.nextInt();
+            
+            switch (opcMain) {
+                case 1 -> {
+                    System.out.print("""
+                                         ¿Qué tipo de cuenta desea?
+                                         1. Ahorros
+                                         2. Corriente
+                                         """);
+                    System.out.print("Opción: ");
+                    int opcSubM1 = s.nextInt();
+                    if(opcSubM1 == 1){
+                        System.out.println("----- Formulario de Creación de Cuenta de Ahorros----");
+                        System.out.print("Monto de la cuenta creada: ");
+                        int saldo = s.nextInt();
+                        CuentaAhorros ca = new CuentaAhorros(false,
+                                1,
+                                0,
+                                saldo,
+                                12, 
+                                1.35);
+                        ca.imprimir();
+                        listCA.add(ca);
+                    }else{
+                        System.out.println("----- Formulario de Creación de Cuenta Corriente----");
+                        System.out.print("Monto de la cuenta creada: ");
+                        int saldo = s.nextInt();
+                        CuentaCorriente cc = new CuentaCorriente(0,
+                                1,
+                                0,
+                                saldo,
+                                12, 
+                                1.35);
+                        cc.imprimir();
+                        listCC.add(cc);
+                    }
+                }
+                case 2 -> {
+                }
+                case 3 -> {
+                }
+                case 4 -> {
+                }
+                case 5 -> {
+                }
+                case 6 -> {
+                    System.out.println("Saliendo del programa...");
+                }
+                default -> {
+                    System.out.println("Ingrese una opción correcta...");
+                }
+            }
+        }while(opcMain != 6);
     }
 }

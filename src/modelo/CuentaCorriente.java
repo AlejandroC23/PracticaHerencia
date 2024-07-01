@@ -11,11 +11,8 @@ package modelo;
 public class CuentaCorriente extends Cuenta {
     private double sobregiro;
 
-    public CuentaCorriente() {
-    }
-
-    public CuentaCorriente(double sobregiro, int nroConsignaciones, int nroRetiros, double saldo, float tasaAnual, float comisionMensual, double interesMensual) {
-        super(nroConsignaciones, nroRetiros, saldo, tasaAnual, comisionMensual, interesMensual);
+    public CuentaCorriente(double sobregiro, int nroConsignaciones, int nroRetiros, double saldo, double tasaAnual, double comisionMensual) {
+        super(nroConsignaciones, nroRetiros, saldo, tasaAnual, comisionMensual);
         this.sobregiro = sobregiro;
     }
 
@@ -27,42 +24,42 @@ public class CuentaCorriente extends Cuenta {
         this.sobregiro = sobregiro;
     }
     
-    @Override
-    public void retiro(double valorRetiro){
+    public void retiroCorriente(double valorRetiro){
         if (valorRetiro>getSaldo()) {
             setSobregiro(valorRetiro - getSaldo());
             setSaldo(0);
-            setNroRetiros(getNroRetiros() + 1);
+            System.out.println("Su saldo actual es: $0\n" +
+                    "Su valor de deuda al banco es: $" + getSobregiro());
         }else{
             setSaldo(getSaldo() - valorRetiro);
-            setNroRetiros(getNroRetiros() + 1);
         }
+        setNroRetiros(getNroRetiros() + 1);
     }
     
-    @Override
-    public void deposito(double valorDeposito){
-        if(getSobregiro() >= 0){
-            super.deposito(valorDeposito - getSobregiro());
+    public void depositar(double valorDeposito){
+        if(getSobregiro() > 0){
+            if (valorDeposito < getSobregiro()) {
+                setSobregiro(getSobregiro() - valorDeposito);
+                System.out.println("Su deuda supera su deposito, su sobregiro es de: $" + getSobregiro());
+            }else{
+                this.deposito(valorDeposito - getSobregiro());
+                System.out.println("Deuda cancelada, el valor de deposito será de: $" + (valorDeposito - getSobregiro()));
+                setSobregiro(0);
+            }
         }else{
-            super.deposito(valorDeposito);
+            this.deposito(valorDeposito);
         }
-    }
-    
-    @Override
-    public void extractoMensual(){
-        super.extractoMensual();
-        System.out.println("------ EXTRACTO MENSUAL -----" + "\n" +
-                "Saldo: " + getSaldo() + "\n" +
-                "Interés Mensual: " + getInteresMensual() + "\n" +
-                "Comisión Mensual: " + getComisionMensual());
     }
     
     @Override
     public void imprimir(){
         System.out.println("------ CUENTA CORRIENTE ------" + "\n" +
                 "Saldo de la Cuenta: " + getSaldo() + "\n" +
-                "Comision Anual: " + getComisionMensual()+ "\n" +
+                "Sobregiro: " + getSobregiro()+ "\n" +
                 "Nro Transacciones: " + (getNroConsignaciones()+getNroRetiros()) + "\n" +
-                "Valor Sobregiro: " + getSobregiro());
+                "Nro. Consignaciones: " + getNroConsignaciones() + "\n" +
+                "Nro. Retiros: " + getNroRetiros() + "\n" +
+                "Tasa Anual: " + getTasaAnual() + "\n" +
+                "Comision Mensual: " + getComisionMensual());
     }
 }

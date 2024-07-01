@@ -12,28 +12,18 @@ public class Cuenta {
     private int nroConsignaciones;
     private int nroRetiros;
     private double saldo;
-    private float tasaAnual;
-    private float comisionMensual;
-    private double interesMensual;
+    private double tasaAnual;
+    private double comisionMensual;
 
     public Cuenta() {
     }
 
-    public Cuenta(int nroConsignaciones, int nroRetiros, double saldo, float tasaAnual, float comisionMensual, double interesMensual) {
+    public Cuenta(int nroConsignaciones, int nroRetiros, double saldo, double tasaAnual, double comisionMensual) {
         this.nroConsignaciones = nroConsignaciones;
         this.nroRetiros = nroRetiros;
         this.saldo = saldo;
         this.tasaAnual = tasaAnual;
         this.comisionMensual = comisionMensual;
-        this.interesMensual = interesMensual;
-    }
-
-    public double getInteresMensual() {
-        return interesMensual;
-    }
-
-    public void setInteresMensual(double interesMensual) {
-        this.interesMensual = interesMensual;
     }
 
     public double getSaldo() {
@@ -60,29 +50,31 @@ public class Cuenta {
         this.nroRetiros = nroRetiros;
     }
 
-    public float getTasaAnual() {
+    public double getTasaAnual() {
         return tasaAnual;
     }
 
-    public void setTasaAnual(float tasaAnual) {
+    public void setTasaAnual(double tasaAnual) {
         this.tasaAnual = tasaAnual;
     }
 
-    public float getComisionMensual() {
+    public double getComisionMensual() {
         return comisionMensual;
     }
 
-    public void setComisionMensual(float comisionMensual) {
+    public void setComisionMensual(double comisionMensual) {
         this.comisionMensual = comisionMensual;
     }
     
     //METODOS DE REGLA DE NEGOCIO
     public void imprimir(){
+        
         System.out.println("------ DATOS CUENTA BANCARIA ------" + "\n" +
+                "Saldo de la Cuenta: " + getSaldo() + "\n" +
                 "Nro. Consignaciones: " + getNroConsignaciones() + "\n" +
                 "Nro. Retiros: " + getNroRetiros() + "\n" +
-                "Tasa Anual: " + getTasaAnual()+ "\n" +
-                "Comision Anual: " + getComisionMensual()+ "\n");
+                "Tasa Anual: " + getTasaAnual() + "\n" +
+                "Comision Mensual: " + getComisionMensual());
     }
     
     public void deposito(double valorDeposito){
@@ -100,13 +92,12 @@ public class Cuenta {
         }
     }
     
-    public void interesMensual(){
-        setInteresMensual((getSaldo() * getTasaAnual()) / 365);
-        setSaldo(getSaldo() + getComisionMensual());
+    public double interesMensual(){
+        return (getSaldo() * ((getTasaAnual()/100)/12));
     }
     
     public void extractoMensual(){
-        setSaldo(getSaldo() - getComisionMensual());
-        interesMensual();
+        double interes = this.interesMensual();
+        setSaldo(getSaldo() - getComisionMensual() + interes);
     }
 }
