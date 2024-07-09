@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelo;
+package modelo.personal;
 
 /**
  *
@@ -18,14 +18,13 @@ public class Estudiante extends PersonaH {
     public Estudiante() {
     }
 
-    public Estudiante(int idEstudiante, int numMatricula, String horario, String jornada, int idPersona, String nombres, String apellidos, String cedula, int telefono, String direccion, String correoElectronico, String sexo, String fechaNacimiento) {
-        super(idPersona, nombres, apellidos, cedula, telefono, direccion, correoElectronico, sexo, fechaNacimiento);
+    public Estudiante(int idEstudiante, int numMatricula, String horario, String jornada) {
         this.idEstudiante = idEstudiante;
         this.numMatricula = numMatricula;
         this.horario = horario;
         this.jornada = jornada;
     }
-
+    
     public int getIdEstudiante() {
         return idEstudiante;
     }

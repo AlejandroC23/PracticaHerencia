@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelo;
+package modelo.personal;
 
 /**
  *
@@ -13,6 +13,8 @@ public class PersonaH {
     private String nombres;
     private String apellidos;
     private String cedula;
+    private String usuario;
+    private String clave;
     private int telefono;
     private String direccion;
     private String correoElectronico;
@@ -22,16 +24,34 @@ public class PersonaH {
     public PersonaH() {
     }
 
-    public PersonaH(int idPersona, String nombres, String apellidos, String cedula, int telefono, String direccion, String correoElectronico, String sexo, String fechaNacimiento) {
+    public PersonaH(int idPersona, String nombres, String apellidos, String cedula, String usuario, String clave, int telefono, String direccion, String correoElectronico, String sexo, String fechaNacimiento) {
         this.idPersona = idPersona;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.cedula = cedula;
+        this.usuario = usuario;
+        this.clave = clave;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correoElectronico = correoElectronico;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
     }
     
     public int getIdPersona() {
@@ -109,6 +129,8 @@ public class PersonaH {
     public void imprimir(){
         System.out.println("------ DATOS PERSONALES ------\n"+
                 "Id: " + getIdPersona()+ "\n" +
+                "Usuario: " + getUsuario() + "\n" +
+                "Clave: ***************** \n" +
                 "Cedula: " + getCedula() + "\n" +
                 "Nombres: " + getNombres() + "\n" +
                 "Apellidos: " + getApellidos() + "\n" +

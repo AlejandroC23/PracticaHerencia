@@ -4,15 +4,16 @@
  */
 package vista;
 
-import com.sun.source.tree.CaseTree;
+import controlador.ConexionBDD;
+import controlador.personal.PersonaControlador;
 import java.util.ArrayList;
 import java.util.Scanner;
-import modelo.Administrativo;
-import modelo.CuentaAhorros;
-import modelo.CuentaCorriente;
-import modelo.Docente;
-import modelo.Estudiante;
-import modelo.PersonaH;
+import modelo.personal.Administrativo;
+import modelo.banco.CuentaAhorros;
+import modelo.banco.CuentaCorriente;
+import modelo.personal.Docente;
+import modelo.personal.Estudiante;
+import modelo.personal.PersonaH;
 
 /**
  *
@@ -23,52 +24,52 @@ public class Main {
         Docente d = new Docente();
         
         //INSTANCIA DE DOCENTE
-        d.setNombres("Alejandro");
-        d.setIdPersona(1);
-        d.setApellidos("Cevallos");
-        d.setTitulo("Tecnólogo en Desarrollo de Software");
-        d.setEspecialidad("N/A");
-        d.setRegistroSenecyt("001-006-2025RX");
+//        d.setNombres("Alejandro");
+//        d.setIdPersona(1);
+//        d.setApellidos("Cevallos");
+//        d.setTitulo("Tecnólogo en Desarrollo de Software");
+//        d.setEspecialidad("N/A");
+//        d.setRegistroSenecyt("001-006-2025RX");
 
         //d.imprimir();
 
         //INSTANCIA DE ADMINISTRATIVO
-        Administrativo a = new Administrativo(1, 
-                "Supervisor", 
-                "Vinculación", 
-                2, 
-                "Ricardo", 
-                "Villanueva", 
-                "1004587919", 
-                995196339, 
-                "Ibarra", 
-                "ricardovillan@gmail.com", 
-                "Femenino", 
-                "1996/03/24");
+//        Administrativo a = new Administrativo(1, 
+//                "Supervisor", 
+//                "Vinculación", 
+//                2, 
+//                "Ricardo", 
+//                "Villanueva", 
+//                "1004587919", 
+//                995196339, 
+//                "Ibarra", 
+//                "ricardovillan@gmail.com", 
+//                "Femenino", 
+//                "1996/03/24");
         //a.imprimir();
         
         //UPCASTING: CREAR OBJETOS DE LA CLASE PADRE
         //A TRAVÉS DE CONSTRUCTORES DE LAS CLASES HIJAS
-        PersonaH p = new Estudiante();
-        p.setIdPersona(3);
-        p.setNombres("Alejandro");
-        p.setApellidos("Cevallos");
-        p.setCedula("1004587919");
-        p.setTelefono(995196339);
-        p.setDireccion("Ibarra");
-        p.setCorreoElectronico("alejandrocev2005@gmail.com");
-        p.setSexo("No Binario");
-        p.setFechaNacimiento("2005/06/10");
+//        PersonaH p = new Estudiante();
+//        p.setIdPersona(3);
+//        p.setNombres("Alejandro");
+//        p.setApellidos("Cevallos");
+//        p.setCedula("1004587919");
+//        p.setTelefono(995196339);
+//        p.setDireccion("Ibarra");
+//        p.setCorreoElectronico("alejandrocev2005@gmail.com");
+//        p.setSexo("No Binario");
+//        p.setFechaNacimiento("2005/06/10");
         
         //p.imprimir();
         
         //DOWNCASTING: HEREDAR LOS DATOS DEL OBJETO PADRE A UN OBJETO HIJO
-        Estudiante e = (Estudiante)p;
-        
-        e.setIdEstudiante(1);
-        e.setNumMatricula(10001);
-        e.setHorario("08:00-12:00");
-        e.setJornada("Matutina");
+//        Estudiante e = (Estudiante)p;
+//        
+//        e.setIdEstudiante(1);
+//        e.setNumMatricula(10001);
+//        e.setHorario("08:00-12:00");
+//        e.setJornada("Matutina");
         
         //e.imprimir();
         
@@ -129,7 +130,8 @@ public class Main {
                          3. Imprimir Estado de Cuenta
                          4. Depósito
                          5. Retiros
-                         6. Salir
+                         6. Gestión de Usuarios
+                         7. Salir
                          """);
             System.out.print("Opción: ");
             opcMain = s.nextInt();
@@ -155,6 +157,8 @@ public class Main {
                                 1.35);
                         ca.imprimir();
                         listCA.add(ca);
+                        listCA.clear();
+                        listCA.subList(1, 4);
                     }else{
                         System.out.println("----- Formulario de Creación de Cuenta Corriente----");
                         System.out.print("Monto de la cuenta creada: ");
@@ -178,6 +182,45 @@ public class Main {
                 case 5 -> {
                 }
                 case 6 -> {
+                    System.out.println("""
+                                       ------ Gestión de Usuario ------
+                                       1. Crear usuario
+                                       2. Desactivar usuario
+                                       3. Editar datos
+                                       """);
+                    System.out.print("Opción: ");
+                    int opcSubM2 = s.nextInt();
+                    if(opcSubM2 == 1){
+                        System.out.println("""
+                                                    ------ Registro de Usuario -----
+                                           Ingrese los siguientes datos informativos:""");
+                        PersonaH p = new PersonaH();
+                        System.out.print("Ingrese su nombre: ");
+                        p.setNombres(s.next());
+                        System.out.print("Ingrese su apellido: ");
+                        p.setApellidos(s.next());
+                        System.out.print("Ingrese su número de cédula: ");
+                        p.setCedula(s.next());
+                        System.out.print("Ingrese su usuario: ");
+                        p.setUsuario(s.next());
+                        System.out.print("Ingrese su clave: ");
+                        p.setClave(s.next());
+                        System.out.print("Ingrese su teléfono: ");
+                        p.setTelefono(s.nextInt());
+                        System.out.print("Ingrese su dirección: ");
+                        p.setDireccion(s.next());
+                        System.out.print("Ingrese su correo electrónico: ");
+                        p.setCorreoElectronico(s.next());
+                        System.out.print("Ingrese su sexo: ");
+                        p.setSexo(s.next());
+                        System.out.print("Ingrese su fecha de nacimiento: ");
+                        p.setFechaNacimiento(s.next());
+                        
+                        PersonaControlador pc = new PersonaControlador();
+                        pc.crearPersona(p);
+                    }
+                }
+                case 7 -> {
                     System.out.println("Saliendo del programa...");
                 }
                 default -> {
@@ -185,5 +228,8 @@ public class Main {
                 }
             }
         }while(opcMain != 6);
+    
+        
+    
     }
 }

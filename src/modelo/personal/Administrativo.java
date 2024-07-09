@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelo;
+package modelo.personal;
 
 /**
  *
@@ -17,13 +17,13 @@ public class Administrativo extends PersonaH {
     public Administrativo() {
     }
 
-    public Administrativo(int idAdministrativo, String cargo, String area, int idPersona, String nombres, String apellidos, String cedula, int telefono, String direccion, String correoElectronico, String sexo, String fechaNacimiento) {
-        super(idPersona, nombres, apellidos, cedula, telefono, direccion, correoElectronico, sexo, fechaNacimiento);
+    public Administrativo(int idAdministrativo, String cargo, String area, int idPersona, String nombres, String apellidos, String cedula, String usuario, String clave, int telefono, String direccion, String correoElectronico, String sexo, String fechaNacimiento) {
+        super(idPersona, nombres, apellidos, cedula, usuario, clave, telefono, direccion, correoElectronico, sexo, fechaNacimiento);
         this.idAdministrativo = idAdministrativo;
         this.cargo = cargo;
         this.area = area;
     }
-
+    
     public int getIdAdministrativo() {
         return idAdministrativo;
     }
