@@ -11,20 +11,21 @@ package modelo.personal;
 public class Estudiante extends PersonaH {
 
     private int idEstudiante;
-    private int numMatricula;
-    private String horario;
+    private String numMatricula;
     private String jornada;
+    private int idPersona;
 
     public Estudiante() {
     }
 
-    public Estudiante(int idEstudiante, int numMatricula, String horario, String jornada) {
+    public Estudiante(int idEstudiante, String numMatricula, String jornada, int idPersona, String nombres, String apellidos, String cedula, String usuario, String clave, int telefono, String direccion, String correoElectronico, String sexo, String fechaNacimiento) {
+        super(idPersona, nombres, apellidos, cedula, usuario, clave, telefono, direccion, correoElectronico, sexo, fechaNacimiento);
         this.idEstudiante = idEstudiante;
         this.numMatricula = numMatricula;
-        this.horario = horario;
         this.jornada = jornada;
+        this.idPersona = idPersona;
     }
-    
+
     public int getIdEstudiante() {
         return idEstudiante;
     }
@@ -33,20 +34,12 @@ public class Estudiante extends PersonaH {
         this.idEstudiante = idEstudiante;
     }
 
-    public int getNumMatricula() {
+    public String getNumMatricula() {
         return numMatricula;
     }
 
-    public void setNumMatricula(int numMatricula) {
+    public void setNumMatricula(String numMatricula) {
         this.numMatricula = numMatricula;
-    }
-
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
     }
 
     public String getJornada() {
@@ -57,6 +50,14 @@ public class Estudiante extends PersonaH {
         this.jornada = jornada;
     }
 
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+    
     public void imprimir() {
         System.out.println("------ DATOS PERSONALES ------\n"
                 + "Cedula: " + getCedula() + "\n"
@@ -69,7 +70,6 @@ public class Estudiante extends PersonaH {
                 + "------ DATOS ESTUDIANTE ------\n"
                 + "Id Estudiante: " + getIdEstudiante() + "\n"
                 + "Número de Matricula: " + getNumMatricula() + "\n"
-                + "Horario: " + getHorario() + "\n"
                 + "Jornada: " + getJornada());
     }
 }

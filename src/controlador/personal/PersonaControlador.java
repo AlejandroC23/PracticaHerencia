@@ -54,10 +54,8 @@ public class PersonaControlador {
             int res = ejecutar.executeUpdate();
             
             if(res > 0){
-                System.out.println("¡LA PERSONA HA SIDO CREADA CON EXITO!");
                 ejecutar.close();
             }else{
-                System.out.println("¡ERROR! INGRESE CORRECTAMENTE LOS DATOS SOLICITADOS");
                 ejecutar.close();
             }
             
@@ -66,5 +64,27 @@ public class PersonaControlador {
             //ERROR - DEBUG
             System.out.println("ERROR: " + e);
         }
+    }
+    
+    public int buscarIdPersona(String cedula){
+        try {
+            String consulta = "SELECT idpersona FROM personas "
+                    + "WHERE cedula = '" + cedula + "';";
+            ejecutar = (PreparedStatement) connection.prepareCall(consulta);
+            
+            resultado = ejecutar.executeQuery(consulta);
+            
+            if(resultado.next()){
+                int idPersona = resultado.getInt("idpersona");
+                return idPersona;
+            }else{
+                System.out.println("¡ERROR! Ingrese una cédula válida");
+            }
+            ejecutar.close();
+        } catch (Exception e) {
+            System.out.println("¡ERROR EN EL SISTEMA! COMUNIQUESE CON EL ADMINISTRADOR\n"
+                     + "PARA SOLUCIONAR SU PROBLEMA: " + e);
+        }
+        return 0;
     }
 }
